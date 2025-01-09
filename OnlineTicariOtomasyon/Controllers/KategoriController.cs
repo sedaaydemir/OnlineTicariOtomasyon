@@ -29,5 +29,25 @@ namespace OnlineTicariOtomasyon.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult KategoriSil(int id)
+        {
+            var kate = c.Kategoris.Find(id);
+            c.Kategoris.Remove(kate);
+            c.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult KategoriGetir(int id)
+        {
+            var kategori = c.Kategoris.Find(id);
+            return View("KategoriGetir",kategori);
+        }
+        public ActionResult KategoriGuncelle(Kategori k)
+        {
+            var kt = c.Kategoris.Find(k.KategoriId);
+            kt.KategoriAd = k.KategoriAd;
+            c.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }
